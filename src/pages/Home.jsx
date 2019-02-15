@@ -6,7 +6,6 @@ import { searchProperty, searchClear } from '../app/actions/search';
 import Loader from '../components/Loader';
 import ErrorComponent from '../components/errors/error';
 
-
 class Home extends Component {
     constructor() {
         super();
@@ -39,6 +38,7 @@ class Home extends Component {
                     return (
                         <NavLink
                             to={`/property/${suggestion.propertyId}`}
+                            onClick={() => this.props.searchClear()}
                             key={suggestion.propertyId}
                             className="list-group-item list-group-item-action"
                         >
