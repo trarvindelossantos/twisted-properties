@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar } from '../components/layouts/Navbar';
 
+
 class Home extends Component {
     change = e => {
         if (e.target.value.length >= 3) {
