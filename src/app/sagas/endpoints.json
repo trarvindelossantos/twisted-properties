@@ -1,0 +1,45 @@
+[
+    {
+        "endpoints": [
+            {
+                "name": "Auth MSG",
+                "type": "GET",
+                "uri": "https://access-uat-api.corelogic.asia/access/oauth/token",
+                "params": [
+                    {
+                        "grant_type": "client_credentials",
+                        "client_id": "51983d36",
+                        "client_secret": "8fff537e7571e19222649868ecf22018"
+                    }
+                ]
+            },
+            {
+                "name": "Suggest",
+                "type": "GET",
+                "uri": "https://property-uat-api.corelogic.asia/bsg-au/v1/suggest.json",
+                "params": [
+                    {
+                        "q": "",
+                        "suggestionTypes": ""
+                    }
+                ]
+            },
+            {
+                "name": "Property Detail",
+                "type": "GET",
+                "uri": "https://rpgateway-uat.rpdata.com/bsg-au/v1/property/2533569.json",
+                "params": [
+                    {
+                        "returnFields": [
+                            "saleList",
+                            "forSalePropertyCampaignList",
+                            "forRentPropertyCampaignList",
+                            "attributes",
+                            "developmentApplicationList"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
