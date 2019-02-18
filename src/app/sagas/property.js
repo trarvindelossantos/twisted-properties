@@ -1,27 +1,31 @@
 import axios from 'axios';
-import { put, takeEvery, call } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 
 import {
     FETCH_PROPERTY,
     FETCH_PROPERTY_SUCCESS,
     FETCH_PROPERTY_FAILED,
-} from './types';
+} from '../actions/types';
 
 const API = 'http://localhost:8080/api';
 
 function* fetchProperty_async({ payload }) {
     try {
-        let property = yield call(
-            [axios, axios.get],
-            `${API}/property/${payload}`
-        );
+        // let property = yield call(
+        //     [axios, axios.get],
+        //     `${API}/property/${payload}`
+        // );
 
-        property = yield property.data;
+        let property = yield axios.get(`${API}/property/${payload}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        });
 
-        if (property.statusCode === 200) {
+        if (property.status === 200) {
             yield put({
                 type: FETCH_PROPERTY_SUCCESS,
-                payload: property,
+                payload: property.data.property,
             });
         } else {
             yield put({

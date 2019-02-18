@@ -2,16 +2,20 @@ import {
     FETCH_PROPERTY,
     FETCH_PROPERTY_SUCCESS,
     FETCH_PROPERTY_FAILED,
-} from './types';
+} from '../actions/types';
 
 const property_state = {
-    fetching: false,
+    fetching: true,
     isSelected: false,
     error: {
         flag: false,
         message: '',
     },
     property: [],
+    photos: {
+        hasPhotos: false,
+        list: [],
+    },
 };
 
 const property_reducer = (state = property_state, { type, payload }) => {
@@ -25,15 +29,30 @@ const property_reducer = (state = property_state, { type, payload }) => {
                     message: '',
                 },
                 property: [],
+                photos: {
+                    hasPhotos: false,
+                    list: [],
+                },
             };
             break;
         case FETCH_PROPERTY_SUCCESS:
+            let photos = {};
+            if (payload.propertyPhotoList) {
+                photos.hasPhotos = true;
+                photos.list = payload.propertyPhotoList;
+            } else {
+                photos = {
+                    ...state.photos,
+                };
+            }
             state = {
                 ...state,
                 fetching: false,
                 isSelected: true,
                 property: payload,
+                photos: photos,
             };
+            break;
         case FETCH_PROPERTY_FAILED:
             state = {
                 ...state,
@@ -41,7 +60,10 @@ const property_reducer = (state = property_state, { type, payload }) => {
                     flag: true,
                     message: payload,
                 },
+                hasPhotos: false,
+                photos: [],
             };
+            break;
         default:
             return state;
     }

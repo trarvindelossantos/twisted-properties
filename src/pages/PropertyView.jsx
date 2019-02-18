@@ -1,32 +1,68 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { fetchProperty } from '../app/actions/property';
 
-import Property from '../components/property/Property';
+import PropertyDetails from '../components/property/PropertyDetails';
 import { Navbar } from '../components/layouts/Navbar';
+import Loader from '../components/Loader';
 
 class PropertyView extends Component {
-    constructor() {
-        super();
-        this.state = {
-            property: [],
-            suggestion: [],
-            loading: true,
-        };
-    }
-
     componentDidMount() {
         const id = this.props.match.params.id;
         this.props.fetchProperty(id);
     }
+
+    //format photos into array
+    setPhotos = photos => {
+        let list = [];
+        _.forEach(photos, n => {
+            list.push({
+                src: n.mediumPhotoUrl,
+                width: 3,
+                height: 3,
+            });
+        });
+        return list;
+    };
+
+    //dynamic column count for gallery
+    columns = containerWidth => {
+        let columns = 1;
+        if (containerWidth >= 500) columns = 2;
+        if (containerWidth >= 900) columns = 3;
+        if (containerWidth >= 1500) columns = 4;
+        return columns;
+    };
+
     render() {
         return (
             <div>
                 <Navbar />
                 <br />
                 <main className="container-fluid">
-                    {!this.state.loading && (
-                        <Property property={this.state.property} />
+                    {!this.props.fetching ? (
+                        <div>
+                            <PropertyDetails
+                                attributes={this.props.property.attributes}
+                                propertyType={
+                                    this.props.property.propertySubType
+                                }
+                                occupancyType={
+                                    this.props.property.occupancyType
+                                }
+                                ///galllery
+                                photos={this.setPhotos(this.props.photos.list)}
+                                column={() => this.columns}
+                            />
+                        </div>
+                    ) : (
+                        <center>
+                            <Loader
+                                loading={this.props.fetching}
+                                message="Loading Property Details."
+                            />
+                        </center>
                     )}
                 </main>
             </div>
@@ -35,7 +71,11 @@ class PropertyView extends Component {
 }
 
 const mapStateToProps = state => {
-    return {};
+    return {
+        fetching: state.property_reducer.fetching,
+        property: state.property_reducer.property,
+        photos: state.property_reducer.photos,
+    };
 };
 
 const mapDispatchToProps = dispatch => {
