@@ -35,6 +35,8 @@ class PropertyView extends Component {
         return columns;
     };
 
+    UNSAFE_componentWillReceiveProps(nextProps) {}
+
     render() {
         return (
             <div>

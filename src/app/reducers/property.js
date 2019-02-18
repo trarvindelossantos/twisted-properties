@@ -11,6 +11,7 @@ const property_state = {
         flag: false,
         message: '',
     },
+    property_id: '',
     property: [],
     photos: {
         hasPhotos: false,
@@ -28,6 +29,7 @@ const property_reducer = (state = property_state, { type, payload }) => {
                     flag: false,
                     message: '',
                 },
+                property_id: '',
                 property: [],
                 photos: {
                     hasPhotos: false,
@@ -49,6 +51,7 @@ const property_reducer = (state = property_state, { type, payload }) => {
                 ...state,
                 fetching: false,
                 isSelected: true,
+                property_id: payload.id,
                 property: payload,
                 photos: photos,
             };

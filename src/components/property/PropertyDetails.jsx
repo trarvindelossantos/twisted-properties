@@ -1,5 +1,6 @@
 import React from 'react';
 import Gallery from 'react-photo-gallery';
+import Search from './Search';
 
 const PropertyDetails = ({
     propertyType,
@@ -15,6 +16,9 @@ const PropertyDetails = ({
                 <div className="col-md-1" />
                 <div className="col-md-10">
                     <div className="card mb-3">
+                        <div className="card-body bg-dark">
+                            <Search />
+                        </div>
                         <div className="card-body bg-primary text-white">
                             <h3 className="card-title">
                                 Property Type: {propertyType}
@@ -158,7 +162,7 @@ const PropertyDetails = ({
                                     </h4>
                                 </div>
                                 <div
-                                    className="card-body collapse"
+                                    className="card-body collapse show"
                                     id="photoGallery"
                                 >
                                     <Gallery
