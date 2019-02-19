@@ -11,7 +11,7 @@ if (!localStorage.getItem('token')) {
 } else {
     store.dispatch({ type: LOGIN_PERSIST });
 }
-
+//store.dispatch({ type: LOGIN });
 ReactDOM.render(
     <Provider store={store}>
         <App />
