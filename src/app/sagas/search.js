@@ -5,7 +5,7 @@ import { SEARCH_BEGIN, SEARCH_SUCCESS, SEARCH_FAILED } from '../actions/types';
 
 // const BASE_URI =
 //     'https://property-uat-api.corelogic.asia/bsg-au/v1/suggest.json';
-const API = 'http://localhost:8080/api';
+const API = 'http://10.0.16.239:8080/api';
 
 function* searchProperty_async(action) {
     try {

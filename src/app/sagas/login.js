@@ -3,7 +3,7 @@ import { put, takeEvery, call } from 'redux-saga/effects';
 
 import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from '../actions/types';
 
-const BASE_URI = 'http://localhost:8080/api';
+const BASE_URI = 'http://10.0.16.239:8080/api';
 
 function* login_async() {
     try {

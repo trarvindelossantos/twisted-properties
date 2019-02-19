@@ -7,7 +7,7 @@ import {
     FETCH_PROPERTY_FAILED,
 } from '../actions/types';
 
-const API = 'http://localhost:8080/api';
+const API = 'http://10.0.16.239:8080/api';
 
 function* fetchProperty_async({ payload }) {
     try {

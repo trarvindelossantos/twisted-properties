@@ -1,4 +1,9 @@
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from '../actions/types';
+import {
+    LOGIN,
+    LOGIN_SUCCESS,
+    LOGIN_FAILED,
+    LOGIN_PERSIST,
+} from '../actions/types';
 
 const login_state = {
     logged_in: false,
@@ -13,6 +18,12 @@ const login_reducer = (state = login_state, { type, payload }) => {
             state = {
                 ...state,
                 logged_in: false,
+            };
+            break;
+        case LOGIN_PERSIST:
+            state = {
+                ...state,
+                logged_in: true,
             };
             break;
         case LOGIN_SUCCESS:
