@@ -1,14 +1,25 @@
 import React from 'react';
 import Gallery from 'react-photo-gallery';
+import Lightbox from 'react-images';
+
 import Search from './Search';
 
-const PropertyDetails = ({
-    propertyType,
-    occupancyType,
-    attributes,
-    photos,
-    column,
-}) => {
+const PropertyDetails = props => {
+    const {
+        propertyType,
+        occupancyType,
+        attributes,
+        photos,
+        column,
+        //lightbox
+        photosLarge,
+        openLightbox,
+        closeLightbox,
+        gotoPrevious,
+        gotoNext,
+        currentImage = 0,
+        lightboxIsOpen,
+    } = props;
     return (
         // attributes !== null && (
         <div>
@@ -162,12 +173,21 @@ const PropertyDetails = ({
                                     </h4>
                                 </div>
                                 <div
-                                    className="card-body collapse show"
+                                    className="card-body collapse"
                                     id="photoGallery"
                                 >
                                     <Gallery
+                                        onClick={openLightbox}
                                         photos={photos}
                                         column={column()}
+                                    />
+                                    <Lightbox
+                                        images={photosLarge}
+                                        onClose={closeLightbox}
+                                        onClickPrev={gotoPrevious}
+                                        onClickNext={gotoNext}
+                                        currentImage={currentImage}
+                                        isOpen={lightboxIsOpen}
                                     />
                                 </div>
                             </div>

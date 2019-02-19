@@ -8,6 +8,39 @@ import { Navbar } from '../components/layouts/Navbar';
 import Loader from '../components/Loader';
 
 class PropertyView extends Component {
+    constructor() {
+        super();
+        this.state = {
+            currentImage: 0,
+            propertyPhotos: [],
+        };
+    }
+
+    openLightbox = (event, object) => {
+        this.setState({
+            //currentImage: object.index,
+            lightboxIsOpen: true,
+        });
+    };
+
+    closeLightbox = () => {
+        this.setState({
+            currentImage: 0,
+            lightboxIsOpen: false,
+        });
+    };
+
+    gotoPrevious = () => {
+        this.setState({
+            currentImage: this.state.currentImage - 1,
+        });
+    };
+    gotoNext = () => {
+        this.setState({
+            currentImage: this.state.currentImage + 1,
+        });
+    };
+
     componentDidMount() {
         const id = this.props.match.params.id;
         this.props.fetchProperty(id);
@@ -20,9 +53,21 @@ class PropertyView extends Component {
             list.push({
                 src: n.mediumPhotoUrl,
                 width: 3,
-                height: 3,
+                height: 2,
             });
         });
+
+        return list;
+    };
+
+    setPhotosLarge = photos => {
+        let list = [];
+        _.forEach(photos, n => {
+            list.push({
+                src: n.largePhotoUrl,
+            });
+        });
+
         return list;
     };
 
@@ -34,8 +79,6 @@ class PropertyView extends Component {
         if (containerWidth >= 1500) columns = 4;
         return columns;
     };
-
-    UNSAFE_componentWillReceiveProps(nextProps) {}
 
     render() {
         return (
@@ -56,6 +99,16 @@ class PropertyView extends Component {
                                 ///galllery
                                 photos={this.setPhotos(this.props.photos.list)}
                                 column={() => this.columns}
+                                openLightbox={this.openLightbox}
+                                //lightbox
+                                photosLarge={this.setPhotosLarge(
+                                    this.props.photos.list
+                                )}
+                                closeLightbox={this.closeLightbox}
+                                gotoPrevious={this.gotoPrevious}
+                                gotoNext={this.gotoNext}
+                                currentImage={this.state.currentImage}
+                                lightboxIsOpen={this.state.lightboxIsOpen}
                             />
                         </div>
                     ) : (
