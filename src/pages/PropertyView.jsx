@@ -16,7 +16,7 @@ class PropertyView extends Component {
         };
     }
 
-    openLightbox = object => {
+    openLightbox = (event, object) => {
         this.setState({
             //currentImage: object.index,
             lightboxIsOpen: true,
@@ -65,6 +65,8 @@ class PropertyView extends Component {
         _.forEach(photos, n => {
             list.push({
                 src: n.largePhotoUrl,
+                width: 3,
+                height: 2,
             });
         });
 
