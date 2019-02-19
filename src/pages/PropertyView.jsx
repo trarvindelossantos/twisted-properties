@@ -18,7 +18,7 @@ class PropertyView extends Component {
 
     openLightbox = (event, object) => {
         this.setState({
-            //currentImage: object.index,
+            currentImage: object.index,
             lightboxIsOpen: true,
         });
     };
