@@ -29,7 +29,7 @@ const login_reducer = (state = login_state, { type, payload }) => {
         case LOGIN_SUCCESS:
             //store token to localstorage
             const token = payload.access_token;
-            localStorage.setItem('token', token);
+            localStorage.setItem('tp_token', token);
             state = {
                 ...state,
                 logged_in: true,
