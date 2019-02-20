@@ -13,8 +13,13 @@ const login_state = {
 const login_reducer = (state = login_state, { type, payload }) => {
     switch (type) {
         case LOGIN:
+<<<<<<< Updated upstream
             //clear localstorage
             localStorage.clear();
+=======
+            //remove token from localstorage
+            localStorage.removeItem('tp_token');
+>>>>>>> Stashed changes
             state = {
                 ...state,
                 logged_in: false,

@@ -11,7 +11,7 @@ function* searchProperty_async(action) {
     try {
         const suggestions = yield axios.get(`${API}/suggestions`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Authorization: `Bearer ${localStorage.getItem('tp_token')}`,
             },
             params: {
                 q: action.payload,

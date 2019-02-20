@@ -18,7 +18,7 @@ function* fetchProperty_async({ payload }) {
 
         let property = yield axios.get(`${API}/property/${payload}`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Authorization: `Bearer ${localStorage.getItem('tp_token')}`,
             },
         });
 

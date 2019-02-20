@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { LOGIN, LOGIN_PERSIST } from './app/actions/types';
 
-if (!localStorage.getItem('token')) {
+if (!localStorage.getItem('tp_token')) {
     store.dispatch({ type: LOGIN });
 } else {
     store.dispatch({ type: LOGIN_PERSIST });
