@@ -5,6 +5,7 @@ import { Navbar } from '../components/layouts/Navbar';
 import { searchProperty, searchClear } from '../app/actions/search';
 import Loader from '../components/Loader';
 import ErrorComponent from '../components/errors/error';
+import Search from '../components/property/Search';
 
 class Home extends Component {
     constructor() {

@@ -14,6 +14,8 @@ class Search extends Component {
             searchMinLenght: 3,
         };
     }
+
+    //load suggestions
     suggestions = () => {
         return (
             <div
@@ -37,6 +39,7 @@ class Search extends Component {
             </div>
         );
     };
+
     onSearch = event => {
         if (event.target.value.length >= this.state.searchMinLenght) {
             this.setState({
@@ -52,6 +55,7 @@ class Search extends Component {
         }
     };
 
+    //handles new search
     searchNew = id => {
         this.props.fetchProperty(id);
         this.props.searchClear();

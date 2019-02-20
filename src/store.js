@@ -4,9 +4,10 @@ import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 
 //saga
-import { WATCHER_search } from './app/sagas/search';
-import { WATCHER_login } from './app/sagas/login';
-import { WATCH_fetchProperty } from './app/sagas/property';
+import super_saga from './app/sagas/super_saga';
+// import { WATCHER_search } from './app/sagas/search';
+// import { WATCHER_login } from './app/sagas/login';
+// import { WATCH_fetchProperty } from './app/sagas/property';
 // import { fetchCompanies_watcher, showCompany_watcher } from './sagas/company.saga';
 //reducer
 import rootReducer from './app/reducers/rootReducer';
@@ -18,7 +19,8 @@ export default createStore(
     applyMiddleware(createLogger(), thunk, sagaMiddleware)
 );
 
-sagaMiddleware.run(WATCHER_search);
-sagaMiddleware.run(WATCHER_login);
-sagaMiddleware.run(WATCH_fetchProperty);
+sagaMiddleware.run(super_saga);
+// sagaMiddleware.run(WATCHER_search);
+// sagaMiddleware.run(WATCHER_login);
+// sagaMiddleware.run(WATCH_fetchProperty);
 //

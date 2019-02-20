@@ -41,6 +41,6 @@ function* fetchProperty_async({ payload }) {
     }
 }
 
-export function* WATCH_fetchProperty() {
+export function* WATCHER_fetchProperty() {
     yield takeEvery(FETCH_PROPERTY, fetchProperty_async);
 }

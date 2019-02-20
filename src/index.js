@@ -4,14 +4,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './store';
-import { LOGIN, LOGIN_PERSIST } from './app/actions/types';
+import { LOGIN } from './app/actions/types';
 
-if (!localStorage.getItem('tp_token')) {
-    store.dispatch({ type: LOGIN });
-} else {
-    store.dispatch({ type: LOGIN_PERSIST });
-}
-//store.dispatch({ type: LOGIN });
+store.dispatch({ type: LOGIN });
+
 ReactDOM.render(
     <Provider store={store}>
         <App />

@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-import { SEARCH_BEGIN, SEARCH_SUCCESS, SEARCH_FAILED } from '../actions/types';
+import {
+    SEARCH_BEGIN,
+    SEARCH_SUCCESS,
+    SEARCH_FAILED,
+    LOG,
+} from '../actions/types';
 
 // const BASE_URI =
 //     'https://property-uat-api.corelogic.asia/bsg-au/v1/suggest.json';
@@ -19,6 +24,7 @@ function* searchProperty_async(action) {
             },
         });
 
+        console.log(suggestions);
         if (suggestions.status === 200) {
             yield put({
                 type: SEARCH_SUCCESS,
@@ -33,7 +39,7 @@ function* searchProperty_async(action) {
     } catch (error) {
         yield put({
             type: SEARCH_FAILED,
-            payload: 'Error Occurred',
+            payload: error.response,
         });
     }
 }
