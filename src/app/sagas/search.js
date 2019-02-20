@@ -1,12 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-import {
-    SEARCH_BEGIN,
-    SEARCH_SUCCESS,
-    SEARCH_FAILED,
-    LOG,
-} from '../actions/types';
+import { SEARCH_BEGIN, SEARCH_SUCCESS, SEARCH_FAILED } from '../actions/types';
 
 // const BASE_URI =
 //     'https://property-uat-api.corelogic.asia/bsg-au/v1/suggest.json';

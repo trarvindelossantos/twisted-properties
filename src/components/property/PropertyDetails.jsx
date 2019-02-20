@@ -6,6 +6,7 @@ import Search from './Search';
 
 const PropertyDetails = props => {
     const {
+        address,
         propertyType,
         occupancyType,
         attributes,
@@ -31,10 +32,10 @@ const PropertyDetails = props => {
                             <Search />
                         </div>
                         <div className="card-body bg-primary text-white">
-                            <h3 className="card-title">
-                                Property Type: {propertyType}
-                            </h3>
+                            <h3 className="card-title">{address}</h3>
                             <p className="card-text disabled">
+                                Property Type: {propertyType}
+                                <br />
                                 Occupancy Type: {occupancyType}
                             </p>
                         </div>
@@ -47,12 +48,11 @@ const PropertyDetails = props => {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-md-6">
-                                    {/* <label>Property Details</label> */}
                                     <table className="table">
                                         <tbody>
                                             <tr>
                                                 <th>Bedroom</th>
-                                                <td>
+                                                <td align={'left'}>
                                                     {attributes.bedrooms &&
                                                     attributes.bedrooms !== 0
                                                         ? attributes.bedrooms
@@ -61,7 +61,7 @@ const PropertyDetails = props => {
                                             </tr>
                                             <tr>
                                                 <th>Bathroom</th>
-                                                <td>
+                                                <td align={'left'}>
                                                     {attributes.bathrooms &&
                                                     attributes.bathrooms !== 0
                                                         ? attributes.bathrooms
@@ -70,7 +70,7 @@ const PropertyDetails = props => {
                                             </tr>
                                             <tr>
                                                 <th>Car Space</th>
-                                                <td>
+                                                <td align={'left'}>
                                                     {attributes.carSpaces &&
                                                     attributes.carSpaces !== 0
                                                         ? attributes.carSpaces
@@ -79,7 +79,7 @@ const PropertyDetails = props => {
                                             </tr>
                                             <tr>
                                                 <th>Lock-up Garage</th>
-                                                <td>
+                                                <td align={'left'}>
                                                     {attributes.lockUpGarages &&
                                                     attributes.lockUpGarages !==
                                                         0
@@ -89,7 +89,7 @@ const PropertyDetails = props => {
                                             </tr>
                                             <tr>
                                                 <th>Floor Area</th>
-                                                <td>
+                                                <td align={'left'}>
                                                     {attributes.floorArea &&
                                                     attributes.floorArea !== 0
                                                         ? attributes.floorArea
@@ -100,12 +100,11 @@ const PropertyDetails = props => {
                                     </table>
                                 </div>
                                 <div className="col-md-6">
-                                    {/* <label>Construction Details</label> */}
                                     <table className="table">
                                         <tbody>
                                             <tr>
                                                 <th>Land Area</th>
-                                                <td>
+                                                <td align={'left'}>
                                                     {attributes.landArea &&
                                                     attributes.landArea !== 0
                                                         ? attributes.landArea
@@ -114,7 +113,7 @@ const PropertyDetails = props => {
                                             </tr>
                                             <tr>
                                                 <th>Land Area Source</th>
-                                                <td>
+                                                <td align={'left'}>
                                                     {attributes.landAreaSource &&
                                                     attributes.landAreaSource !==
                                                         0
@@ -124,7 +123,7 @@ const PropertyDetails = props => {
                                             </tr>
                                             <tr>
                                                 <th>Roof Material</th>
-                                                <td>
+                                                <td align={'left'}>
                                                     {attributes.roofMaterial &&
                                                     attributes.roofMaterial !==
                                                         0
@@ -134,7 +133,7 @@ const PropertyDetails = props => {
                                             </tr>
                                             <tr>
                                                 <th>Wall Material</th>
-                                                <td>
+                                                <td align={'left'}>
                                                     {attributes.wallMaterial &&
                                                     attributes.wallMaterial !==
                                                         0
@@ -144,7 +143,7 @@ const PropertyDetails = props => {
                                             </tr>
                                             <tr>
                                                 <th>Year Built</th>
-                                                <td>
+                                                <td align={'left'}>
                                                     {attributes.yearBuilt &&
                                                     attributes.yearBuilt !== 0
                                                         ? attributes.yearBuilt

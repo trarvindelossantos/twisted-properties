@@ -6,5 +6,6 @@ export const fetchProperty = property_id => {
             type: FETCH_PROPERTY,
             payload: property_id,
         });
+        //dispatch({ type: SET_PROPERTY_ADDRESS, payload: address });
     };
 };

@@ -12,7 +12,7 @@ class PropertyView extends Component {
         super();
         this.state = {
             currentImage: 0,
-            propertyPhotos: [],
+            address: '',
         };
     }
 
@@ -91,6 +91,7 @@ class PropertyView extends Component {
                     {!this.props.fetching ? (
                         <div>
                             <PropertyDetails
+                                address={this.props.match.params.address}
                                 attributes={this.props.property.attributes}
                                 propertyType={
                                     this.props.property.propertySubType
@@ -129,6 +130,7 @@ class PropertyView extends Component {
 
 const mapStateToProps = state => {
     return {
+        address: state.property_reducer.address,
         fetching: state.property_reducer.fetching,
         property: state.property_reducer.property,
         photos: state.property_reducer.photos,

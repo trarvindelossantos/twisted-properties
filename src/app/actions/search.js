@@ -1,4 +1,4 @@
-import { SEARCH_BEGIN, SEARCH_CLEAR } from './types';
+import { SEARCH_BEGIN, SEARCH_CLEAR, SET_PROPERTY_ADDRESS } from './types';
 
 export const searchProperty = query => {
     return dispatch => {
@@ -9,5 +9,11 @@ export const searchProperty = query => {
 export const searchClear = () => {
     return dispatch => {
         dispatch({ type: SEARCH_CLEAR });
+    };
+};
+
+export const setAddress = address => {
+    return dispatch => {
+        dispatch({ type: SET_PROPERTY_ADDRESS, payload: address });
     };
 };

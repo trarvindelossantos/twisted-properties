@@ -16,8 +16,19 @@ const sagaMiddleware = createSagaMiddleware();
 
 export default createStore(
     rootReducer,
+    // compose(
+    //     window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    //         window.__REDUX_DEVTOOLS_EXTENSION__(),
+    //     applyMiddleware(createLogger(), thunk, sagaMiddleware)
+    // )
+    // // window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    // //     window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(createLogger(), thunk, sagaMiddleware)
 );
+
+// const finalCreateStore = compose(
+//     window.devToolsExtension ? window.devToolsExtension() : f => f
+// )(createStore);
 
 sagaMiddleware.run(super_saga);
 // sagaMiddleware.run(WATCHER_search);

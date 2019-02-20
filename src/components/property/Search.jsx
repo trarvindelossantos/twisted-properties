@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { searchProperty, searchClear } from '../../app/actions/search';
+import {
+    searchProperty,
+    searchClear,
+    setAddress,
+} from '../../app/actions/search';
 import { fetchProperty } from '../../app/actions/property';
 import Loader from '.././Loader';
 
@@ -25,7 +29,9 @@ class Search extends Component {
                 {this.props.suggestions.map(suggestion => {
                     return (
                         <NavLink
-                            to={`/property/${suggestion.propertyId}`}
+                            to={`/property/${suggestion.propertyId}/${
+                                suggestion.suggestion
+                            }`}
                             onClick={() =>
                                 this.searchNew(suggestion.propertyId)
                             }
@@ -57,7 +63,9 @@ class Search extends Component {
 
     //handles new search
     searchNew = id => {
+        //this.props.setAddress(address);
         this.props.fetchProperty(id);
+
         this.props.searchClear();
     };
 
@@ -105,6 +113,9 @@ const mapDispatchToProps = dispatch => {
         },
         fetchProperty: id => {
             dispatch(fetchProperty(id));
+        },
+        setAdress: address => {
+            dispatch(setAddress(address));
         },
     };
 };

@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Navbar } from '../components/layouts/Navbar';
-import { searchProperty, searchClear } from '../app/actions/search';
+import { searchProperty, searchClear, setAddress } from '../app/actions/search';
 import Loader from '../components/Loader';
 import ErrorComponent from '../components/errors/error';
-import Search from '../components/property/Search';
 
 class Home extends Component {
     constructor() {
@@ -38,8 +37,13 @@ class Home extends Component {
                 {this.props.suggestions.map(suggestion => {
                     return (
                         <NavLink
-                            to={`/property/${suggestion.propertyId}`}
-                            onClick={() => this.props.searchClear()}
+                            to={`/property/${suggestion.propertyId}/${
+                                suggestion.suggestion
+                            }`}
+                            onClick={e => {
+                                this.props.searchClear();
+                                //this.props.setAddress(suggestion.suggestion);
+                            }}
                             key={suggestion.propertyId}
                             className="list-group-item list-group-item-action"
                         >
@@ -102,8 +106,11 @@ const mapDispatchToProps = dispatch => {
         searchProperty: query => {
             dispatch(searchProperty(query));
         },
-        searchClear: () => {
-            dispatch(searchClear());
+        searchClear: suggestion => {
+            dispatch(searchClear(suggestion));
+        },
+        setAddress: address => {
+            dispatch(setAddress(address));
         },
     };
 };

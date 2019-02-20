@@ -13,6 +13,10 @@ const login_state = {
 const login_reducer = (state = login_state, { type, payload }) => {
     switch (type) {
         case LOGIN:
+            //clear localstorage
+            localStorage.clear();
+            //remove token from localstorage
+            localStorage.removeItem('tp_token');
             state = {
                 ...state,
                 logged_in: false,
