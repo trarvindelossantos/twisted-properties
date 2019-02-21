@@ -3,7 +3,7 @@ import _ from 'lodash';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { fetchProperty } from '../app/actions/property';
-
+import { setAddress } from '../app/actions/search';
 import PropertyDetails from '../components/property/PropertyDetails';
 import { Navbar } from '../components/layouts/Navbar';
 import Loader from '../components/Loader';
@@ -20,9 +20,7 @@ class PropertyView extends Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         const queryStrings = queryString.parse(this.props.location.search);
-        this.setState({
-            address: queryStrings.address,
-        });
+        this.props.setAddress(queryStrings.address);
         this.props.fetchProperty(id);
     }
 
@@ -96,7 +94,7 @@ class PropertyView extends Component {
                     {!this.props.fetching ? (
                         <div>
                             <PropertyDetails
-                                address={this.state.address}
+                                address={this.props.address}
                                 attributes={this.props.property.attributes}
                                 propertyType={
                                     this.props.property.propertySubType
@@ -146,6 +144,9 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchProperty: id => {
             dispatch(fetchProperty(id));
+        },
+        setAddress: address => {
+            dispatch(setAddress(address));
         },
     };
 };

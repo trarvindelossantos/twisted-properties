@@ -33,7 +33,10 @@ class Search extends Component {
                                 suggestion.suggestion
                             }`}
                             onClick={() =>
-                                this.searchNew(suggestion.propertyId)
+                                this.searchNew(
+                                    suggestion.propertyId,
+                                    suggestion.suggestion
+                                )
                             }
                             key={suggestion.propertyId}
                             className="list-group-item list-group-item-action"
@@ -62,10 +65,9 @@ class Search extends Component {
     };
 
     //handles new search
-    searchNew = id => {
-        //this.props.setAddress(address);
+    searchNew = (id, address) => {
+        this.props.setAddress(address);
         this.props.fetchProperty(id);
-
         this.props.searchClear();
     };
 
@@ -114,7 +116,7 @@ const mapDispatchToProps = dispatch => {
         fetchProperty: id => {
             dispatch(fetchProperty(id));
         },
-        setAdress: address => {
+        setAddress: address => {
             dispatch(setAddress(address));
         },
     };
