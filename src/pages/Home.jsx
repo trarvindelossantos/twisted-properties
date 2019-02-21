@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Navbar } from '../components/layouts/Navbar';
 import { searchProperty, searchClear, setAddress } from '../app/actions/search';
+
 import Loader from '../components/Loader';
 import ErrorComponent from '../components/errors/error';
 
@@ -11,7 +12,6 @@ class Home extends Component {
         super();
         this.state = {
             search: '',
-            loading: false,
             searchMinLenght: 3,
         };
     }
@@ -25,9 +25,6 @@ class Home extends Component {
             this.props.searchProperty(event.target.value);
         } else {
             this.props.searchClear();
-            this.setState({
-                loading: false,
-            });
         }
     };
 
@@ -37,13 +34,10 @@ class Home extends Component {
                 {this.props.suggestions.map(suggestion => {
                     return (
                         <NavLink
-                            to={`/property/${suggestion.propertyId}/${
+                            to={`/property/${suggestion.propertyId}?address=${
                                 suggestion.suggestion
                             }`}
-                            onClick={e => {
-                                this.props.searchClear();
-                                //this.props.setAddress(suggestion.suggestion);
-                            }}
+                            onClick={this.props.searchClear}
                             key={suggestion.propertyId}
                             className="list-group-item list-group-item-action"
                         >

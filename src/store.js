@@ -30,10 +30,7 @@ const loadFromLocalStorage = () => {
 };
 const persistedState = loadFromLocalStorage();
 
-const ehancers = compose(
-    applyMiddleware(...middlewares),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const ehancers = compose(applyMiddleware(...middlewares));
 
 const store = createStore(rootReducer, persistedState, ehancers);
 store.subscribe(() => saveToLocalStorage(store.getState()));

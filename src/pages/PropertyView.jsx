@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { fetchProperty } from '../app/actions/property';
 
@@ -17,10 +18,12 @@ class PropertyView extends Component {
     }
 
     componentDidMount() {
-        if (!this.props.property) {
-            const id = this.props.match.params.id;
-            this.props.fetchProperty(id);
-        }
+        const id = this.props.match.params.id;
+        const queryStrings = queryString.parse(this.props.location.search);
+        this.setState({
+            address: queryStrings.address,
+        });
+        this.props.fetchProperty(id);
     }
 
     openLightbox = (event, object) => {
@@ -93,7 +96,7 @@ class PropertyView extends Component {
                     {!this.props.fetching ? (
                         <div>
                             <PropertyDetails
-                                address={this.props.match.params.address}
+                                address={this.state.address}
                                 attributes={this.props.property.attributes}
                                 propertyType={
                                     this.props.property.propertySubType

@@ -9,11 +9,7 @@ export default class Routes extends Component {
         return (
             <Switch>
                 <Route path={'/'} component={Home} exact />
-                <Route
-                    path={'/property/:id/:address'}
-                    component={PropertyView}
-                    exact
-                />
+                <Route path={'/property/:id'} component={PropertyView} exact />
             </Switch>
         );
     }

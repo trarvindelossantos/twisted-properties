@@ -29,7 +29,7 @@ class Search extends Component {
                 {this.props.suggestions.map(suggestion => {
                     return (
                         <NavLink
-                            to={`/property/${suggestion.propertyId}/${
+                            to={`/property/${suggestion.propertyId}?address=${
                                 suggestion.suggestion
                             }`}
                             onClick={() =>
