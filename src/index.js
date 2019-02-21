@@ -6,7 +6,9 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { LOGIN } from './app/actions/types';
 
-store.dispatch({ type: LOGIN });
+const state = store.getState();
+
+if (!state.login_reducer.logged_in) store.dispatch({ type: LOGIN });
 
 ReactDOM.render(
     <Provider store={store}>

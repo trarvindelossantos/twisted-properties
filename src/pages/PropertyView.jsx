@@ -16,6 +16,13 @@ class PropertyView extends Component {
         };
     }
 
+    componentDidMount() {
+        if (!this.props.property) {
+            const id = this.props.match.params.id;
+            this.props.fetchProperty(id);
+        }
+    }
+
     openLightbox = (event, object) => {
         this.setState({
             currentImage: object.index,
@@ -40,11 +47,6 @@ class PropertyView extends Component {
             currentImage: this.state.currentImage + 1,
         });
     };
-
-    componentDidMount() {
-        const id = this.props.match.params.id;
-        this.props.fetchProperty(id);
-    }
 
     //format photos into array
     setPhotos = photos => {
