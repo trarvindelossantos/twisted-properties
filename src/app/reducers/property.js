@@ -48,9 +48,9 @@ const property_reducer = (state = property_state, { type, payload }) => {
             break;
         case FETCH_PROPERTY_SUCCESS:
             let photos = {};
-            if (payload.propertyPhotoList) {
+            if (payload.property.propertyPhotoList) {
                 photos.hasPhotos = true;
-                photos.list = payload.propertyPhotoList;
+                photos.list = payload.property.propertyPhotoList;
             } else {
                 photos = {
                     ...state.photos,
@@ -60,9 +60,10 @@ const property_reducer = (state = property_state, { type, payload }) => {
                 ...state,
                 fetching: false,
                 isSelected: true,
-                property_id: payload.id,
-                property: payload,
+                property_id: payload.property.id,
+                property: payload.property,
                 photos: photos,
+                address: payload.address,
             };
             break;
         case FETCH_PROPERTY_FAILED:

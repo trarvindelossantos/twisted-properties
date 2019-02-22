@@ -66,8 +66,7 @@ class Search extends Component {
 
     //handles new search
     searchNew = (id, address) => {
-        this.props.setAddress(address);
-        this.props.fetchProperty(id);
+        this.props.fetchProperty(id, address);
         this.props.searchClear();
     };
 
@@ -113,8 +112,8 @@ const mapDispatchToProps = dispatch => {
         searchClear: () => {
             dispatch(searchClear());
         },
-        fetchProperty: id => {
-            dispatch(fetchProperty(id));
+        fetchProperty: (id, address) => {
+            dispatch(fetchProperty(id, address));
         },
         setAddress: address => {
             dispatch(setAddress(address));

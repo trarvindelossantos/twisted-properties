@@ -20,8 +20,7 @@ class PropertyView extends Component {
     componentDidMount() {
         const id = this.props.match.params.id;
         const queryStrings = queryString.parse(this.props.location.search);
-        this.props.setAddress(queryStrings.address);
-        this.props.fetchProperty(id);
+        this.props.fetchProperty(id, queryStrings.address);
     }
 
     openLightbox = (event, object) => {
@@ -142,8 +141,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchProperty: id => {
-            dispatch(fetchProperty(id));
+        fetchProperty: (id, address) => {
+            dispatch(fetchProperty(id, address));
         },
         setAddress: address => {
             dispatch(setAddress(address));

@@ -37,7 +37,7 @@ class Home extends Component {
                             to={`/property/${suggestion.propertyId}?address=${
                                 suggestion.suggestion
                             }`}
-                            onClick={this.props.searchClear}
+                            onClick={() => this.searchClear()}
                             key={suggestion.propertyId}
                             className="list-group-item list-group-item-action"
                         >
@@ -47,6 +47,10 @@ class Home extends Component {
                 })}
             </div>
         );
+    };
+
+    searchClear = () => {
+        this.props.searchClear();
     };
 
     render() {
@@ -71,6 +75,7 @@ class Home extends Component {
                                 name="search"
                                 autoComplete={'off'}
                                 onChange={this.onSearch}
+                                //onBlur={() => this.searchClear()}
                             />
                             <center>
                                 <Loader loading={this.props.searching} />

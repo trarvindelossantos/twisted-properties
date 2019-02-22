@@ -11,21 +11,20 @@ const API = 'http://10.0.16.239:8080/api';
 
 function* fetchProperty_async({ payload }) {
     try {
-        // let property = yield call(
-        //     [axios, axios.get],
-        //     `${API}/property/${payload}`
-        // );
-
-        let property = yield axios.get(`${API}/property/${payload}`, {
+        let property = yield axios.get(`${API}/property/${payload.id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('tp_token')}`,
             },
         });
 
         if (property.status === 200) {
+            const _payload = {
+                property: property.data.property,
+                address: payload.address,
+            };
             yield put({
                 type: FETCH_PROPERTY_SUCCESS,
-                payload: property.data.property,
+                payload: _payload,
             });
         } else {
             yield put({
