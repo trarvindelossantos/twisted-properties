@@ -3,7 +3,7 @@ import _ from 'lodash';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { fetchProperty } from '../app/actions/property';
-import { setAddress } from '../app/actions/search';
+import { searchClear } from '../app/actions/search';
 import PropertyDetails from '../components/property/PropertyDetails';
 import { Navbar } from '../components/layouts/Navbar';
 import Loader from '../components/Loader';
@@ -25,6 +25,7 @@ class PropertyView extends Component {
 
     openLightbox = (event, object) => {
         this.setState({
+            ...this.state,
             currentImage: object.index,
             lightboxIsOpen: true,
         });
@@ -32,20 +33,23 @@ class PropertyView extends Component {
 
     closeLightbox = () => {
         this.setState({
+            ...this.state,
             currentImage: 0,
             lightboxIsOpen: false,
         });
     };
 
     gotoPrevious = () => {
-        this.setState({
+        this.setState(prevState => ({
+            ...prevState,
             currentImage: this.state.currentImage - 1,
-        });
+        }));
     };
     gotoNext = () => {
-        this.setState({
+        this.setState(prevState => ({
+            ...prevState,
             currentImage: this.state.currentImage + 1,
-        });
+        }));
     };
 
     //format photos into array
@@ -144,8 +148,8 @@ const mapDispatchToProps = dispatch => {
         fetchProperty: (id, address) => {
             dispatch(fetchProperty(id, address));
         },
-        setAddress: address => {
-            dispatch(setAddress(address));
+        searchClear: () => {
+            dispatch(searchClear());
         },
     };
 };

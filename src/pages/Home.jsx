@@ -34,9 +34,7 @@ class Home extends Component {
                 {this.props.suggestions.map(suggestion => {
                     return (
                         <NavLink
-                            to={`/property/${suggestion.propertyId}?address=${
-                                suggestion.suggestion
-                            }`}
+                            to={`/property/${suggestion.propertyId}`}
                             onClick={() => this.searchClear()}
                             key={suggestion.propertyId}
                             className="list-group-item list-group-item-action"
@@ -75,7 +73,6 @@ class Home extends Component {
                                 name="search"
                                 autoComplete={'off'}
                                 onChange={this.onSearch}
-                                //onBlur={() => this.searchClear()}
                             />
                             <center>
                                 <Loader loading={this.props.searching} />

@@ -29,9 +29,7 @@ class Search extends Component {
                 {this.props.suggestions.map(suggestion => {
                     return (
                         <NavLink
-                            to={`/property/${suggestion.propertyId}?address=${
-                                suggestion.suggestion
-                            }`}
+                            to={`/property/${suggestion.propertyId}`}
                             onClick={() =>
                                 this.searchNew(
                                     suggestion.propertyId,
@@ -52,6 +50,7 @@ class Search extends Component {
     onSearch = event => {
         if (event.target.value.length >= this.state.searchMinLenght) {
             this.setState({
+                ...this.state,
                 search: event.target.value,
                 loading: true,
             });
@@ -59,6 +58,7 @@ class Search extends Component {
         } else {
             this.props.searchClear();
             this.setState({
+                ...this.state,
                 loading: false,
             });
         }
